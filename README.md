@@ -12,9 +12,9 @@ A Splash screen with curved custom bottom sheet and dots indicator within it.
 - All items in the bottom sheet is responsive to the screen size.
 
 <p align="center">
-	<img src="https://i.imgur.com/b9oe7sw.png" alt="Image" height="600"/>
-	<img src="https://i.imgur.com/9YCGXsO.png" alt="Image" height="600"/>
-	<img src="https://i.imgur.com/NMV8ldD.png" alt="Image" height="600"/>	
+	<img src="https://i.imgur.com/b9oe7sw.png" alt="Image" height="550"/>
+	<img src="https://i.imgur.com/9YCGXsO.png" alt="Image" height="550"/>
+	<img src="https://i.imgur.com/NMV8ldD.png" alt="Image" height="550"/>	
 	
 
 ## Usage
