@@ -3,17 +3,49 @@ import 'dart:ui' as ui;
 import 'package:flutter/painting.dart';
 
 class CurvedSplashScreen extends StatefulWidget {
+  /// Number of screens you want to add
   final int screensLength;
-  final Widget Function(int) screenBuilder;
+
+  /// Widget that appears on each screen according to index
+
+  final Widget Function(int index) screenBuilder;
+
+  /// Color of the bottom sheet this will remove the gradiant color.
+
+  final Color bottomSheetColor;
+
+  /// First Color of the gradiant of the bottom sheet.
+
   final Color firstGradiantColor;
+
+  /// Second Color of the gradiant of the bottom sheet.
+
   final Color secondGradiantColor;
+
+  /// Text label to the back button.
+
   final String backText;
+
+  /// Text label to the skip button.
+
   final String skipText;
+
+  /// Color given to the forward button, default is Red
   final Color forwardColor;
+
+  /// Color given to the forward icon, default is White
+
   final Color forwardIconColor;
+
+  /// Color given to the forward back and skip text the, default is White.
+
   final Color textColor;
+
+  /// Color given to the backgroud of the screen, default is White.
+
   final Color backgroundColor;
 
+  /// Action done when the skip button pressed or to the forward button at the end of the screens. Usually navigate to another screen.
   final Function onSkipButton;
   const CurvedSplashScreen({
     Key key,
@@ -28,6 +60,7 @@ class CurvedSplashScreen extends StatefulWidget {
     this.forwardIconColor,
     this.textColor,
     this.backgroundColor,
+    this.bottomSheetColor,
   }) : super(key: key);
 
   @override
@@ -67,6 +100,7 @@ class _CurvedSplashScreenState extends State<CurvedSplashScreen> {
         forwardIconColor: widget.forwardIconColor,
         textColor: widget.textColor,
         backgroundColor: widget.backgroundColor ?? Colors.white,
+        bottomSheetColor: widget.bottomSheetColor,
         skip: () {
           if (widget.onSkipButton != null) {
             widget.onSkipButton();
@@ -109,6 +143,7 @@ class CurvedSheet extends StatelessWidget {
   final Color forwardIconColor;
   final Color textColor;
   final Color backgroundColor;
+  final Color bottomSheetColor;
   const CurvedSheet({
     Key key,
     @required this.totalPages,
@@ -123,7 +158,8 @@ class CurvedSheet extends StatelessWidget {
     @required this.forwardColor,
     @required this.forwardIconColor,
     @required this.textColor,
-    this.backgroundColor,
+    @required this.backgroundColor,
+    @required this.bottomSheetColor,
   }) : super(key: key);
 
   @override
@@ -134,6 +170,7 @@ class CurvedSheet extends StatelessWidget {
           color: backgroundColor ?? Colors.white,
           child: CustomPaint(
             painter: NavigationPainter(
+                bottomSheetColor: bottomSheetColor,
                 firstGradiantColor: firstGradiantColor,
                 secondGradiantColor: secondGradiantColor),
             child: Container(
@@ -147,7 +184,8 @@ class CurvedSheet extends StatelessWidget {
             onPressed: onPressed),
         Positioned.fill(
             child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(0.05)).copyWith(bottom: getRelativeHeight(0.04)),
+          padding: EdgeInsets.symmetric(horizontal: getRelativeWidth(0.05))
+              .copyWith(bottom: getRelativeHeight(0.04)),
           child: Align(
               alignment: Alignment.bottomCenter,
               child: Row(
@@ -290,11 +328,13 @@ double getRelativeWidth(double percentage) {
 
 class NavigationPainter extends CustomPainter {
   NavigationPainter({
-    this.firstGradiantColor,
-    this.secondGradiantColor,
+    @required this.bottomSheetColor,
+    @required this.firstGradiantColor,
+    @required this.secondGradiantColor,
   });
   final Color firstGradiantColor;
   final Color secondGradiantColor;
+  final Color bottomSheetColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -303,8 +343,12 @@ class NavigationPainter extends CustomPainter {
         Offset(size.width, 0),
         Offset(size.width, size.height),
         [
-          firstGradiantColor ?? Color(0xff62cbe5),
-          secondGradiantColor ?? Colors.lightBlueAccent.withOpacity(0.9)
+          bottomSheetColor != null
+              ? bottomSheetColor
+              : firstGradiantColor ?? Color(0xff62cbe5),
+          bottomSheetColor != null
+              ? bottomSheetColor
+              : secondGradiantColor ?? Colors.lightBlueAccent.withOpacity(0.9)
         ],
       )
       ..style = PaintingStyle.fill;

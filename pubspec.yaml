@@ -2,7 +2,9 @@ name: curved_splash_screen
 description: A Splash screen with curved custom bottom sheet and dots indicator within it. You can add your custom splash screens & change any color of the items of the bottomSheet.
 version: 1.0.0
 author:
-homepage:
+homepage: https://github.com/hosain-mohamed/curved_splash_screen
+repository: https://github.com/hosain-mohamed/curved_splash_screen
+
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

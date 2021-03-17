@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_splash_screen/curved_splash_screen.dart';
 
-
 void main() {
   runApp(MyApp());
 }
