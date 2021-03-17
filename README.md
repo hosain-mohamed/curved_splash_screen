@@ -13,8 +13,10 @@ A Splash screen with curved custom bottom sheet and dots indicator within it.
 
 <p align="center">
 	<img src="https://i.imgur.com/b9oe7sw.png" alt="Image" height="500"/>
+	<space>
 	<img src="https://i.imgur.com/9YCGXsO.png" alt="Image" height="500"/>
-	<img src="https://i.imgur.com/tLu6yq2.png" alt="Image" height="500"/>	
+	<space>
+	<img src="https://i.imgur.com/NMV8ldD.png" alt="Image" height="500"/>	
 	
 
 ## Usage
