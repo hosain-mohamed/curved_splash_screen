@@ -3,6 +3,10 @@
 	<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="MIT License Badge"></a>
 </p>
 
+</p>
+<p align = "center">
+<a href="https://pub.dev/packages/curved_splash_screen"> Pub.dev</a>
+</p>
 
 # Curved Splash Screen
 A Splash screen with curved custom bottom sheet and dots indicator within it.
