@@ -386,10 +386,9 @@
 //   }
 // }
 
-
-import 'package:doctorplus/src/constant/constant.dart';
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 
 class CurvedSplashScreen extends StatefulWidget {
   final int screensLength;
@@ -430,6 +429,9 @@ class CurvedSplashScreen extends StatefulWidget {
   final Color? textColor;
 
   /// Color given to the backgroud of the screen, default is White.
+  final int? animationDuration;
+
+  /// Duration in second for the dots.
 
   final Color? backgroundColor;
 
@@ -448,6 +450,7 @@ class CurvedSplashScreen extends StatefulWidget {
     this.forwardColor,
     this.forwardIconColor,
     this.textColor,
+    this.animationDuration,
     this.backgroundColor,
     required this.onSkipButton,
   }) : super(key: key);
@@ -479,6 +482,7 @@ class _CurvedSplashScreenState extends State<CurvedSplashScreen> {
             Center(child: widget.screenBuilder(index)),
       ),
       bottomSheet: CurvedSheet(
+        animationDuration: widget.animationDuration ?? 2,
         totalPages: widget.screensLength,
         currentPage: currentPageIndex,
         firstGradiantColor:
@@ -533,6 +537,7 @@ class CurvedSheet extends StatelessWidget {
   final Color textColor;
   final Color backgroundColor;
   final Color bottomSheetColor;
+  final int animationDuration;
   const CurvedSheet({
     Key? key,
     required this.totalPages,
@@ -549,6 +554,7 @@ class CurvedSheet extends StatelessWidget {
     required this.textColor,
     required this.backgroundColor,
     required this.bottomSheetColor,
+    required this.animationDuration,
   }) : super(key: key);
 
   @override
@@ -594,7 +600,8 @@ class CurvedSheet extends StatelessWidget {
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: getSplashDots(totalPages, currentPage)),
+                      children: getSplashDots(
+                          totalPages, currentPage, animationDuration)),
                   GestureDetector(
                     onTap: () {
                       skip();
@@ -661,14 +668,15 @@ class ForwardButtom extends StatelessWidget {
   }
 }
 
-List<Widget> getSplashDots(int maxLength, int selectedDot) {
+List<Widget> getSplashDots(
+    int maxLength, int selectedDot, int animationDuration) {
   List<Widget> dots = [];
   for (int i = 0; i < maxLength; i++) {
     dots.add(
       Row(
         children: [
           AnimatedContainer(
-            duration: kdefaultDuration,
+            duration: Duration(seconds: animationDuration),
             height: getRelativeHeight(0.01),
             decoration: BoxDecoration(
                 color: selectedDot == i
